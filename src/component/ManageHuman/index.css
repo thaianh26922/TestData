@@ -1,0 +1,11 @@
+.low-target {
+    background-color: #f8d7da !important;
+  }
+  
+  /* Green for daily target > 90 */
+  .high-target {
+    background-color: #d4edda !important;
+  }
+  .manage{
+    padding:1% 2%;
+  }
