@@ -1,0 +1,26 @@
+export const dailyData = {
+    revenue: [
+      { date: '2024-08-01', amount: 5000, description: 'Product Sales' },
+      { date: '2024-08-02', amount: 4500, description: 'Service Fees' },
+      { date: '2024-08-03', amount: 4700, description: 'Product Sales' },
+      { date: '2024-08-04', amount: 4800, description: 'Product Sales' },
+      { date: '2024-08-05', amount: 5100, description: 'Product Sales' },
+      { date: '2024-08-06', amount: 5200, description: 'Service Fees' },
+      { date: '2024-08-07', amount: 5300, description: 'Product Sales' },
+      { date: '2024-08-08', amount: 5400, description: 'Product Sales' },
+      { date: '2024-08-09', amount: 5500, description: 'Product Sales' },
+      { date: '2024-08-10', amount: 5600, description: 'Service Fees' },
+    ],
+    expenses: [
+      { date: '2024-08-01', salaries: 800, materials: 1000, rent: 200, maintenance: 100, description: 'August Expenses' },
+      { date: '2024-08-02', salaries: 800, materials: 800, rent: 200, maintenance: 100, description: 'August Expenses' },
+      { date: '2024-08-03', salaries: 800, materials: 900, rent: 200, maintenance: 150, description: 'August Expenses' },
+      { date: '2024-08-04', salaries: 800, materials: 850, rent: 200, maintenance: 100, description: 'August Expenses' },
+      { date: '2024-08-05', salaries: 800, materials: 950, rent: 200, maintenance: 150, description: 'August Expenses' },
+      { date: '2024-08-06', salaries: 800, materials: 1000, rent: 200, maintenance: 200, description: 'August Expenses' },
+      { date: '2024-08-07', salaries: 800, materials: 1050, rent: 200, maintenance: 150, description: 'August Expenses' },
+      { date: '2024-08-08', salaries: 800, materials: 1100, rent: 200, maintenance: 100, description: 'August Expenses' },
+      { date: '2024-08-09', salaries: 800, materials: 1150, rent: 200, maintenance: 150, description: 'August Expenses' },
+      { date: '2024-08-10', salaries: 800, materials: 1200, rent: 200, maintenance: 200, description: 'August Expenses' },
+    ],
+  };

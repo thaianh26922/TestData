@@ -1,143 +1,182 @@
-export const machines = [
+export const machines =[
     {
+      "id": 1,
       "name": "Máy trộn bột",
-      "quantity": 5,
-      "maintenance_date": "2024-09-10",
-      "daily_completion": 300,
-      "daily_error": 2
+      "type": "Mixing Machine",
+      "technical_specs": {
+        "power": "5 kW",
+        "capacity": "100 kg/h",
+        "speed": "1500 rpm"
+      },
+      "location": "Khu vực trộn nguyên liệu",
+      "manufacturer": "XYZ Co.",
+      "manufacture_year": 2020,
+      "last_maintenance": "2024-05-10",
+      "next_maintenance": "2024-09-10",
+      "status": "Operational",
+      "notes": "Hoạt động tốt, không sự cố",
+      "user_manual": "Step 1: Pre-operation Check , Step 2: Start the Machine ,Step 3: Operation"
     },
     {
+      "id": 2,
       "name": "Máy nhào bột",
-      "quantity": 3,
-      "maintenance_date": "2024-09-20",
-      "daily_completion": 250,
-      "daily_error": 1
+      "type": "Kneading Machine",
+      "technical_specs": {
+        "power": "7.5 kW",
+        "capacity": "150 kg/h",
+        "speed": "1200 rpm"
+      },
+      "location": "Khu vực nhào bột",
+      "manufacturer": "ABC Machinery",
+      "manufacture_year": 2019,
+      "last_maintenance": "2024-04-05",
+      "next_maintenance": "2024-08-05",
+      "status": "Operational",
+      "notes": "Cần kiểm tra dầu bôi trơn thường xuyên",
+      "user_manual": "Step 1: Pre-operation Check , Step 2: Start the Machine ,Step 3: Operation"
     },
     {
-      "name": "Máy tạo hình kẹo",
-      "quantity": 7,
-      "maintenance_date": "2024-10-05",
-      "daily_completion": 400,
-      "daily_error": 3
-    },
-    {
-      "name": "Máy cắt kẹo",
-      "quantity": 4,
-      "maintenance_date": "2024-09-15",
-      "daily_completion": 350,
-      "daily_error": 2
-    },
-    {
-      "name": "Máy đóng gói tự động",
-      "quantity": 6,
-      "maintenance_date": "2024-09-25",
-      "daily_completion": 500,
-      "daily_error": 4
-    },
-    {
-      "name": "Máy nấu đường",
-      "quantity": 2,
-      "maintenance_date": "2024-09-30",
-      "daily_completion": 150,
-      "daily_error": 1
-    },
-    {
-      "name": "Máy rải hạt",
-      "quantity": 4,
-      "maintenance_date": "2024-10-02",
-      "daily_completion": 200,
-      "daily_error": 2
-    },
-    {
-      "name": "Máy làm lạnh kẹo",
-      "quantity": 3,
-      "maintenance_date": "2024-09-28",
-      "daily_completion": 180,
-      "daily_error": 1
-    },
-    {
-      "name": "Máy cắt bột bánh quy",
-      "quantity": 5,
-      "maintenance_date": "2024-09-18",
-      "daily_completion": 220,
-      "daily_error": 3
-    },
-    {
-      "name": "Máy nhào kẹo mềm",
-      "quantity": 2,
-      "maintenance_date": "2024-09-22",
-      "daily_completion": 100,
-      "daily_error": 1
-    },
-    {
-      "name": "Máy làm kẹo cứng",
-      "quantity": 4,
-      "maintenance_date": "2024-09-26",
-      "daily_completion": 240,
-      "daily_error": 2
-    },
-    {
-      "name": "Máy phun socola",
-      "quantity": 3,
-      "maintenance_date": "2024-09-16",
-      "daily_completion": 180,
-      "daily_error": 1
-    },
-    {
-      "name": "Máy cán bột",
-      "quantity": 6,
-      "maintenance_date": "2024-10-01",
-      "daily_completion": 260,
-      "daily_error": 2
-    },
-    {
-      "name": "Máy phun hương liệu",
-      "quantity": 4,
-      "maintenance_date": "2024-09-14",
-      "daily_completion": 300,
-      "daily_error": 1
-    },
-    {
+      "id": 3,
       "name": "Máy ép kẹo",
-      "quantity": 5,
-      "maintenance_date": "2024-09-19",
-      "daily_completion": 400,
-      "daily_error": 3
+      "type": "Candy Pressing Machine",
+      "technical_specs": {
+        "power": "10 kW",
+        "capacity": "200 kg/h",
+        "speed": "1800 rpm"
+      },
+      "location": "Khu vực ép kẹo",
+      "manufacturer": "SweetTech Co.",
+      "manufacture_year": 2021,
+      "last_maintenance": "2024-06-15",
+      "next_maintenance": "2024-10-15",
+      "status": "Operational",
+      "notes": "Vận hành trơn tru, không cần bảo trì sớm",
+      "user_manual": "Step 1: Pre-operation Check , Step 2: Start the Machine ,Step 3: Operation"
     },
     {
-      "name": "Máy sấy bánh",
-      "quantity": 7,
-      "maintenance_date": "2024-09-27",
-      "daily_completion": 280,
-      "daily_error": 2
+      "id": 4,
+      "name": "Máy cắt kẹo",
+      "type": "Candy Cutting Machine",
+      "technical_specs": {
+        "power": "8 kW",
+        "capacity": "180 kg/h",
+        "speed": "1600 rpm"
+      },
+      "location": "Khu vực cắt kẹo",
+      "manufacturer": "FoodMachinery Ltd.",
+      "manufacture_year": 2018,
+      "last_maintenance": "2024-07-01",
+      "next_maintenance": "2024-11-01",
+      "status": "Needs Maintenance",
+      "notes": "Lưỡi cắt bị mòn, cần thay thế",
+      "user_manual": "Step 1: Pre-operation Check , Step 2: Start the Machine ,Step 3: Operation"
     },
     {
+      "id": 5,
       "name": "Máy đóng gói kẹo",
-      "quantity": 3,
-      "maintenance_date": "2024-10-03",
-      "daily_completion": 320,
-      "daily_error": 4
+      "type": "Candy Packaging Machine",
+      "technical_specs": {
+        "power": "5.5 kW",
+        "capacity": "250 packs/h",
+        "speed": "1000 rpm"
+      },
+      "location": "Khu vực đóng gói",
+      "manufacturer": "PackTech Co.",
+      "manufacture_year": 2020,
+      "last_maintenance": "2024-03-22",
+      "next_maintenance": "2024-07-22",
+      "status": "Operational",
+      "notes": "Cần vệ sinh định kỳ để tránh kẹt giấy",
+      "user_manual": "Step 1: Pre-operation Check , Step 2: Start the Machine ,Step 3: Operation"
     },
     {
+      "id": 6,
+      "name": "Lò nướng bánh",
+      "type": "Baking Oven",
+      "technical_specs": {
+        "power": "15 kW",
+        "capacity": "300 bánh/h",
+        "temperature_range": "150-300°C"
+      },
+      "location": "Khu vực nướng bánh",
+      "manufacturer": "BakeMaster Co.",
+      "manufacture_year": 2022,
+      "last_maintenance": "2024-06-30",
+      "next_maintenance": "2024-10-30",
+      "status": "Operational",
+      "notes": "Hiệu suất tốt, nhiệt độ ổn định",
+      "user_manual": "Step 1: Pre-operation Check , Step 2: Start the Machine ,Step 3: Operation"
+    },
+    {
+      "id": 7,
+      "name": "Máy làm lạnh kẹo",
+      "type": "Candy Cooling Machine",
+      "technical_specs": {
+        "power": "6 kW",
+        "capacity": "200 kg/h",
+        "cooling_temperature": "10°C"
+      },
+      "location": "Khu vực làm lạnh",
+      "manufacturer": "CoolTech Co.",
+      "manufacture_year": 2021,
+      "last_maintenance": "2024-07-12",
+      "next_maintenance": "2024-11-12",
+      "status": "Operational",
+      "notes": "Hoạt động tốt, không sự cố",
+      "user_manual": "Step 1: Pre-operation Check , Step 2: Start the Machine ,Step 3: Operation"
+    },
+    {
+      "id": 8,
+      "name": "Máy đùn kẹo",
+      "type": "Candy Extruding Machine",
+      "technical_specs": {
+        "power": "9 kW",
+        "capacity": "150 kg/h",
+        "speed": "2000 rpm"
+      },
+      "location": "Khu vực đùn kẹo",
+      "manufacturer": "ExtrudeMaster",
+      "manufacture_year": 2019,
+      "last_maintenance": "2024-05-28",
+      "next_maintenance": "2024-09-28",
+      "status": "Operational",
+      "notes": "Cần kiểm tra độ căng đai",
+      "user_manual": "Step 1: Pre-operation Check , Step 2: Start the Machine ,Step 3: Operation"
+    },
+    {
+      "id": 9,
+      "name": "Máy phun sô cô la",
+      "type": "Chocolate Coating Machine",
+      "technical_specs": {
+        "power": "12 kW",
+        "capacity": "100 kg/h",
+        "temperature_range": "40-60°C"
+      },
+      "location": "Khu vực phủ sô cô la",
+      "manufacturer": "ChocoTech Co.",
+      "manufacture_year": 2021,
+      "last_maintenance": "2024-04-18",
+      "next_maintenance": "2024-08-18",
+      "status": "Operational",
+      "notes": "Kiểm tra định kỳ hệ thống nhiệt",
+      "user_manual": "Step 1: Pre-operation Check , Step 2: Start the Machine ,Step 3: Operation"
+    },
+    {
+      "id": 10,
       "name": "Máy tạo hình bánh quy",
-      "quantity": 5,
-      "maintenance_date": "2024-09-23",
-      "daily_completion": 230,
-      "daily_error": 1
-    },
-    {
-      "name": "Máy cán bột bánh quy",
-      "quantity": 2,
-      "maintenance_date": "2024-09-29",
-      "daily_completion": 180,
-      "daily_error": 2
-    },
-    {
-      "name": "Máy ép bánh kẹo mềm",
-      "quantity": 6,
-      "maintenance_date": "2024-09-24",
-      "daily_completion": 300,
-      "daily_error": 3
+      "type": "Cookie Molding Machine",
+      "technical_specs": {
+        "power": "7 kW",
+        "capacity": "500 bánh/h",
+        "mold_size": "Various"
+      },
+      "location": "Khu vực tạo hình bánh",
+      "manufacturer": "BiscuitMaster Ltd.",
+      "manufacture_year": 2023,
+      "last_maintenance": "2024-07-20",
+      "next_maintenance": "2024-11-20",
+      "status": "Operational",
+      "notes": "Chưa có sự cố nào",
+      "user_manual": "Step 1: Pre-operation Check , Step 2: Start the Machine ,Step 3: Operation"
     }
   ]
-  

@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { Space, Table, Input, Button, Modal, Form } from 'antd';
+import { Space, Table, Input, Button, Modal, Form, Select, DatePicker } from 'antd';
 import { send } from '@emailjs/browser';
 import { emplooyees } from '../../data/employees';
+import './index.css'
 
 export default function ManageHuman() {
   const { Search } = Input;
+  const { Option } = Select;
+
   const [filteredData, setFilteredData] = useState(emplooyees);
   const [searchTerm, setSearchTerm] = useState('');
   const [isAddModalVisible, setIsAddModalVisible] = useState(false);
   const [isEmailModalVisible, setIsEmailModalVisible] = useState(false);
   const [isUpdateModalVisible, setIsUpdateModalVisible] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [selectedEmployees, setSelectedEmployees] = useState([]);
   const [form] = Form.useForm();
   const [emailForm] = Form.useForm();
   const [updateForm] = Form.useForm();
+  const [isMeetingModalVisible, setIsMeetingModalVisible] = useState(false);
+  const [meetingForm] = Form.useForm();
 
   const columns = [
     {
@@ -22,28 +28,28 @@ export default function ManageHuman() {
       key: 'id',
     },
     {
-      title: 'Name',
+      title: 'Tên',
       dataIndex: 'name',
       key: 'name',
       render: (text) => <a>{text}</a>,
     },
     {
-      title: 'Position',
+      title: 'Chức vụ',
       dataIndex: 'position',
       key: 'position',
     },
     {
-      title: 'Daily Target (%)',
+      title: 'Chỉ tiêu hàng ngày (%)',
       dataIndex: 'daily_target_percentage',
       key: 'daily_target_percentage',
     },
     {
-      title: 'Days Off',
+      title: 'Số ngày nghỉ',
       dataIndex: 'days_off',
       key: 'days_off',
     },
     {
-      title: 'Notes',
+      title: 'Ghi chú',
       dataIndex: 'notes',
       key: 'notes',
     },
@@ -53,19 +59,18 @@ export default function ManageHuman() {
       key: 'email',
     },
     {
-      title: 'Action',
+      title: 'Hành động',
       key: 'action',
       render: (_, record) => (
         <Space size="middle">
-          <a onClick={() => handleUpdateClick(record)}>Update</a>
-          <a onClick={() => handleSendEmailClick(record)}>Send Email</a>
-          <a onClick={() => handleDelete(record.id)}>Delete</a>
+          <a onClick={() => handleUpdateClick(record)}>Cập nhật</a>
+          <a onClick={() => handleSendEmailClick(record)}>Gửi Email</a>
+          <a onClick={() => handleDelete(record.id)}>Xóa</a>
         </Space>
       ),
     },
   ];
 
-  // Lọc dữ liệu theo từ khóa tìm kiếm
   useEffect(() => {
     const filtered = emplooyees.filter((employee) =>
       employee.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -77,12 +82,11 @@ export default function ManageHuman() {
     setSearchTerm(value);
   };
 
-  // Đặt màu hàng dựa trên daily_target_percentage
   const rowClassName = (record) => {
     if (record.daily_target_percentage < 80) {
-      return 'low-target'; // Màu đỏ cho chỉ tiêu thấp
+      return 'low-target'; 
     } else if (record.daily_target_percentage > 90) {
-      return 'high-target'; // Màu xanh cho chỉ tiêu cao
+      return 'high-target'; 
     }
     return '';
   };
@@ -125,26 +129,26 @@ export default function ManageHuman() {
   // Gửi email
   const handleSendEmail = (values) => {
     const templateParams = {
-      to_email: values.recipient_email, // Email người nhận
-      subject: 'Employee Information',
-      message: `Details of Employee: 
-        Name: ${selectedEmployee.name}
-        Position: ${selectedEmployee.position}
-        Daily Target (%): ${selectedEmployee.daily_target_percentage}
-        Days Off: ${selectedEmployee.days_off}
-        Notes: ${selectedEmployee.notes}`,
+      to_email: values.recipient_email, 
+      subject: 'Thông tin nhân viên',
+      message: `Chi tiết của nhân viên: 
+        Tên: ${selectedEmployee.name}
+        Chức vụ: ${selectedEmployee.position}
+        Chỉ tiêu hàng ngày (%): ${selectedEmployee.daily_target_percentage}
+        Số ngày nghỉ: ${selectedEmployee.days_off}
+        Ghi chú: ${selectedEmployee.notes}`,
     };
 
     send('service_lhwapml', 'template_482ek8e', templateParams, 'fdjbrQUywtiUSlZaf')
       .then((response) => {
-        console.log('Email sent successfully:', response);
-        alert('Email sent successfully!');
+        console.log('Email đã được gửi thành công:', response);
+        alert('Email đã được gửi thành công!');
         setIsEmailModalVisible(false);
         emailForm.resetFields();
       })
       .catch((error) => {
-        console.error('Error sending email:', error);
-        alert('Failed to send email.');
+        console.error('Lỗi khi gửi email:', error);
+        alert('Gửi email không thành công.');
       });
   };
 
@@ -177,45 +181,79 @@ export default function ManageHuman() {
     setFilteredData(updatedData);
   };
 
+  const showMeetingModal = () => setIsMeetingModalVisible(true);
+  const handleMeetingCancel = () => {
+    setIsMeetingModalVisible(false);
+    meetingForm.resetFields();
+  };
+
+  const handleCreateMeeting = (values) => {
+    const templateParams = {
+      to_email: selectedEmployees.map(emp => emp.email).join(', '),
+      subject: 'Thư mời họp',
+      message: `Chi tiết cuộc họp: 
+        Ngày: ${values.date.format('YYYY-MM-DD')}
+        Giờ: ${values.time.format('HH:mm')}
+        Agenda: ${values.agenda}
+        Tham dự: ${selectedEmployees.map(emp => emp.name).join(', ')}`,
+    };
+
+    send('service_lhwapml', 'template_482ek8e', templateParams, 'fdjbrQUywtiUSlZaf')
+      .then((response) => {
+        console.log('Thư mời họp đã được gửi thành công:', response);
+        alert('Thư mời họp đã được gửi thành công!');
+        setIsMeetingModalVisible(false);
+        meetingForm.resetFields();
+        setSelectedEmployees([]);
+      })
+      .catch((error) => {
+        console.error('Lỗi khi gửi thư mời họp:', error);
+        alert('Gửi thư mời họp không thành công.');
+      });
+  };
+
   return (
-    <div className='manage'>
+    <div className='manage container-website'>
       <div>
         <h2>Quản lý Nhân Sự</h2>
       </div>
 
-      {/* Search bar */}
+      {/* Thanh tìm kiếm */}
       <Search
-        placeholder="Search by name"
-        enterButton="Search"
+        placeholder="Tìm kiếm theo tên"
+        enterButton="Tìm kiếm"
         onSearch={handleSearch}
         style={{ marginBottom: 16 }}
       />
 
       {/* Nút thêm nhân viên */}
       <Button type="primary" onClick={showAddModal} style={{ marginBottom: 16 }}>
-        Add Employee
+        Thêm Nhân Viên
+      </Button>
+      <Button type="primary" onClick={showMeetingModal} style={{ marginBottom: 16 }}>
+        Tạo Cuộc Họp
       </Button>
 
-      {/* Modal box để thêm nhân viên */}
+      {/* Modal để thêm nhân viên */}
       <Modal
-        title="Add New Employee"
+        title="Thêm Nhân Viên Mới"
         visible={isAddModalVisible}
         onCancel={handleAddCancel}
         footer={null}
       >
         <Form form={form} onFinish={handleAddEmployee}>
           <Form.Item
-            label="Name"
+            label="Tên"
             name="name"
-            rules={[{ required: true, message: 'Please input employee name!' }]}
+            rules={[{ required: true, message: 'Vui lòng nhập tên nhân viên!' }]}
           >
             <Input />
           </Form.Item>
 
           <Form.Item
-            label="Position"
+            label="Chức vụ"
             name="position"
-            rules={[{ required: true, message: 'Please input employee position!' }]}
+            rules={[{ required: true, message: 'Vui lòng nhập chức vụ nhân viên!' }]}
           >
             <Input />
           </Form.Item>
@@ -223,13 +261,13 @@ export default function ManageHuman() {
           <Form.Item
             label="Email"
             name="email"
-            rules={[{ required: true, message: 'Please input employee email!' }]}
+            rules={[{ required: true, message: 'Vui lòng nhập email nhân viên!' }]}
           >
             <Input />
           </Form.Item>
 
           <Form.Item
-            label="Notes"
+            label="Ghi chú"
             name="notes"
           >
             <Input />
@@ -237,70 +275,78 @@ export default function ManageHuman() {
 
           <Form.Item>
             <Button type="primary" htmlType="submit">
-              Submit
+              Gửi
             </Button>
           </Form.Item>
         </Form>
       </Modal>
 
-      {/* Modal box để gửi email */}
+      {/* Modal gửi email */}
       <Modal
-        title="Send Email"
+        title="Gửi Email"
         visible={isEmailModalVisible}
         onCancel={handleEmailCancel}
         footer={null}
       >
         <Form form={emailForm} onFinish={handleSendEmail}>
           <Form.Item
-            label="Recipient Email"
+            label="Đến Email"
             name="recipient_email"
-            rules={[{ required: true, message: 'Please input recipient email!' }]}
+            rules={[{ required: true, message: 'Vui lòng nhập email người nhận!' }]}
           >
             <Input />
           </Form.Item>
 
           <Form.Item>
             <Button type="primary" htmlType="submit">
-              Send Email
+              Gửi
             </Button>
           </Form.Item>
         </Form>
       </Modal>
 
-      {/* Modal box để cập nhật nhân viên */}
+      {/* Modal để cập nhật nhân viên */}
       <Modal
-        title="Update Employee"
+        title="Cập Nhật Nhân Viên"
         visible={isUpdateModalVisible}
         onCancel={handleUpdateCancel}
         footer={null}
       >
         <Form form={updateForm} onFinish={handleUpdateEmployee}>
           <Form.Item
-            label="Name"
+            label="Tên"
             name="name"
-            rules={[{ required: true, message: 'Please input employee name!' }]}
+            rules={[{ required: true, message: 'Vui lòng nhập tên nhân viên!' }]}
           >
             <Input />
           </Form.Item>
 
           <Form.Item
-            label="Position"
+            label="Chức vụ"
             name="position"
-            rules={[{ required: true, message: 'Please input employee position!' }]}
+            rules={[{ required: true, message: 'Vui lòng nhập chức vụ nhân viên!' }]}
           >
             <Input />
           </Form.Item>
 
           <Form.Item
-            label="Email"
-            name="email"
-            rules={[{ required: true, message: 'Please input employee email!' }]}
+            label="Chỉ tiêu hàng ngày (%)"
+            name="daily_target_percentage"
+            rules={[{ required: true, message: 'Vui lòng nhập chỉ tiêu hàng ngày!' }]}
           >
-            <Input />
+            <Input type="number" />
           </Form.Item>
 
           <Form.Item
-            label="Notes"
+            label="Số ngày nghỉ"
+            name="days_off"
+            rules={[{ required: true, message: 'Vui lòng nhập số ngày nghỉ!' }]}
+          >
+            <Input type="number" />
+          </Form.Item>
+
+          <Form.Item
+            label="Ghi chú"
             name="notes"
           >
             <Input />
@@ -308,17 +354,75 @@ export default function ManageHuman() {
 
           <Form.Item>
             <Button type="primary" htmlType="submit">
-              Update
+              Cập Nhật
             </Button>
           </Form.Item>
         </Form>
       </Modal>
 
-      {/* Bảng hiển thị danh sách nhân viên */}
+      {/* Modal tạo cuộc họp */}
+      <Modal
+        title="Tạo Cuộc Họp"
+        visible={isMeetingModalVisible}
+        onCancel={handleMeetingCancel}
+        footer={null}
+      >
+        <Form form={meetingForm} onFinish={handleCreateMeeting}>
+          <Form.Item
+            label="Ngày"
+            name="date"
+            rules={[{ required: true, message: 'Vui lòng chọn ngày!' }]}
+          >
+            <DatePicker />
+          </Form.Item>
+
+          <Form.Item
+            label="Giờ"
+            name="time"
+            rules={[{ required: true, message: 'Vui lòng chọn giờ!' }]}
+          >
+            <DatePicker picker="time" />
+          </Form.Item>
+
+          <Form.Item
+            label="Agenda"
+            name="agenda"
+            rules={[{ required: true, message: 'Vui lòng nhập agenda!' }]}
+          >
+            <Input.TextArea />
+          </Form.Item>
+
+          <Form.Item
+            label="Nhân viên"
+            name="employees"
+            rules={[{ required: true, message: 'Vui lòng chọn ít nhất một nhân viên!' }]}
+          >
+            <Select
+              mode="multiple"
+              onChange={(values) => setSelectedEmployees(filteredData.filter(emp => values.includes(emp.id)))}
+            >
+              {filteredData.map(employee => (
+                <Option key={employee.id} value={employee.id}>
+                  {employee.name}
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
+
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Tạo
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      {/* Bảng hiển thị nhân viên */}
       <Table
         columns={columns}
         dataSource={filteredData}
-        rowClassName={rowClassName} // Áp dụng màu sắc cho hàng dựa trên chỉ tiêu
+        rowKey="id"
+        rowClassName={rowClassName}
       />
     </div>
   );

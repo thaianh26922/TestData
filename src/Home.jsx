@@ -12,7 +12,7 @@ function Home() {
 
       <div className='control-chart'>
         <div className='filter'>
-          <h3>Thống kê</h3>
+          <h3>Biểu đồ thống kê</h3>
           <div id='group-button'>
             <CButton className='button-filter' color="light">Day</CButton>
             <CButton className='button-filter' color="dark">Month</CButton>

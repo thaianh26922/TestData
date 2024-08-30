@@ -36,24 +36,24 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
 
                 </li>
                 <li className='sidebar-list-item'>
-                    <a href="">
-                        <BsPeopleFill className='icon' /> Quản lý nguyên vật liệu
-                    </a>
+                    <NavLink to={'/manageContrast'}>
+                        <BsPeopleFill className='icon' /> Quản lý hợp đồng
+                    </NavLink>
                 </li>
                 <li className='sidebar-list-item'>
-                    <a href="">
-                        <BsListCheck className='icon' /> Quản lý bảo trì thiết bị
-                    </a>
+                    <NavLink to={'/manageSupplier'}>
+                        <BsListCheck className='icon' /> Quản lý chuỗi cung ứng
+                    </NavLink>
                 </li>
                 <li className='sidebar-list-item'>
-                    <a href="">
-                        <BsMenuButtonWideFill className='icon' /> Báo cáo và phân tích
-                    </a>
+                    <NavLink to={'/manageWebsite'}>
+                        <BsMenuButtonWideFill className='icon' /> Quản lý website
+                    </NavLink>
                 </li>
                 <li className='sidebar-list-item'>
-                    <a href="">
+                    <NavLink to={'/manageProfit'}>
                         <BsFillGearFill className='icon' /> Quản lý doanh thu
-                    </a>
+                    </NavLink>
                 </li>
             </ul>
         </aside>

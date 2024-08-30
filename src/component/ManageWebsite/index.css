@@ -1,0 +1,18 @@
+.small-icon {
+    width: 30px; /* Adjust size as needed */
+  }
+  .bar-progress{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+ 
+}
+  .bar-progress-human{
+    padding-right:1%;
+  }
+  .bar-progress-social{
+    padding-left:1%;
+
+  }
+  .container-website{
+    padding: 5%;
+  }

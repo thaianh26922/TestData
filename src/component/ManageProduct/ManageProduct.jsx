@@ -125,7 +125,7 @@ export default function ManageProduct() {
   ];
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div className='container-website' style={{ padding: '20px' }}>
       {/* Select Product Dropdown */}
       <div style={{ marginBottom: '20px' }}>
         <h2>Select a Product</h2>
