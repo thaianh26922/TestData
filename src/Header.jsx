@@ -13,7 +13,7 @@ function Header({OpenSidebar}) {
         <div className='header-left'>
         <NavLink className='link-tag' to={'/'}>
 
-            <h2>Admin Dashboard </h2>
+            <h2>Bảng Điều Khiển Quản Lý </h2>
         </NavLink>
 
         </div>

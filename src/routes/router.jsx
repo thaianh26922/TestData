@@ -8,6 +8,9 @@ import ManageContrast from '../component/ManageContrast/ManageContrast';
 import ManageProfit from '../component/ManageProfit/ManageProfit';
 import ManageSupplier from '../component/ManageSupplier/ManageSupplier';
 import ManageWebsite from '../component/ManageWebsite/ManageWebsite';
+import ProductList from '../component/ProductList/ProductList';
+import ProductUpdate from '../component/ProductUpdate/ProductUpdate';
+import ManageOrder from '../component/ManageOrder/ManageOrder';
 
 export default function ListRouter() {
     return (
@@ -15,6 +18,9 @@ export default function ListRouter() {
             <Route>
                 <Route path='/' element={<Home />} />
                 <Route path='/manageProduct' element={<ManageProduct />} />
+                <Route path='/manageProductDetail/:pid' element={<ProductList />} />
+                <Route path='/manageProductUpdate/:pid' element={<ProductUpdate />} />
+                <Route path='/manageOrder' element={<ManageOrder />} />
                 <Route path='/manageHuman' element={<ManageHuman />} />
                 <Route path='/manageMachines' element={<ManageMachines />} />
                 <Route path='/manageContrast' element={<ManageContrast />} />

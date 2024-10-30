@@ -11,7 +11,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
         <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive" : ""}>
             <div className='sidebar-title'>
                 <div className='sidebar-brand'>
-                    <img src="https://datainsight.vn/_next/static/media/blue-white-logo.be2ac2bf.png" alt="" />
+                    Manager #1
                 </div>
                 <span className='icon close_icon' onClick={OpenSidebar}>X</span>
             </div>
@@ -19,40 +19,40 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
             <ul className='sidebar-list'>
                 <li className='sidebar-list-item'>
                     <NavLink to={'/manageHuman'}>
-                        <BsPeopleFill className='icon' /> Quản lý nhân sự
+                        <BsPeopleFill className='icon' /> Quản lý Nhân sự
 
                     </NavLink>
                 </li>
                 <li className='sidebar-list-item'>
-                    <NavLink to={'/manageProduct'}>
-                        <BsFillArchiveFill className='icon' /> Quản lý hàng hóa
+                    <NavLink to={'/'}>
+                        <BsFillArchiveFill className='icon' />  Quản lý sản phẩm 
                     </NavLink>
 
                 </li>
                 <li className='sidebar-list-item'>
-                    <NavLink to={'/manageMachines'}>
-                        <BsFillGrid3X3GapFill className='icon' /> Quản lý máy móc
+                    <NavLink to={'/manageOrder'}>
+                        <BsFillGrid3X3GapFill className='icon' />  Quản lý Đơn hàng
                     </NavLink>
 
                 </li>
                 <li className='sidebar-list-item'>
-                    <NavLink to={'/manageContrast'}>
-                        <BsPeopleFill className='icon' /> Quản lý hợp đồng
+                    <NavLink to={'/manageProfit'}>
+                        <BsPeopleFill className='icon' />  Quản lý doanh thu
                     </NavLink>
                 </li>
                 <li className='sidebar-list-item'>
                     <NavLink to={'/manageSupplier'}>
-                        <BsListCheck className='icon' /> Quản lý chuỗi cung ứng
+                        <BsListCheck className='icon' />  Quản lý phản hồi 
                     </NavLink>
                 </li>
                 <li className='sidebar-list-item'>
                     <NavLink to={'/manageWebsite'}>
-                        <BsMenuButtonWideFill className='icon' /> Quản lý website
+                        <BsMenuButtonWideFill className='icon' />  Quản lý Website
                     </NavLink>
                 </li>
                 <li className='sidebar-list-item'>
                     <NavLink to={'/manageProfit'}>
-                        <BsFillGearFill className='icon' /> Quản lý doanh thu
+                        <BsFillGearFill className='icon' /> Logout
                     </NavLink>
                 </li>
             </ul>

@@ -1,0 +1,35 @@
+.d-flex{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px 0 ;
+  }
+  .select-detail{
+    width: 60% !important;
+    height: 50px;
+  }
+  babel{
+    background-color: #FFFFFF;
+    color: black;
+    width: 60% !important;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 22px;
+    padding: 10px 0;
+
+  } 
+  .d-flex span {
+    color: black;
+    font-size: 25px;
+  }
+  .detail_information{
+    width: 60%;
+  }
+.detail_product{
+    display: flex;
+    justify-content: space-between;
+    padding: 5%;
+    background-color: gainsboro;
+}
